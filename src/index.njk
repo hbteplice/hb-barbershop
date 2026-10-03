@@ -15,12 +15,17 @@ permalink: /index.html
 {%- if s.domain %}
 <link rel="canonical" href="https://{{ s.domain }}/">
 <meta property="og:url" content="https://{{ s.domain }}/">
-<meta property="og:image" content="https://{{ s.domain }}/img/hero.jpg">
+<meta property="og:image" content="https://{{ s.domain }}/img/share.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
 {%- endif %}
 <meta property="og:type" content="website">
 <meta property="og:title" content="{{ s.name }}">
 <meta property="og:description" content="{{ s.description }}">
-<link rel="icon" type="image/png" href="/img/logo.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+<link rel="icon" type="image/png" sizes="512x512" href="/img/icon-512.png">
+<link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
@@ -31,7 +36,8 @@ permalink: /index.html
   "name": {{ s.name | dump | safe }},
   {%- if s.domain %}
   "url": "https://{{ s.domain }}/",
-  "image": "https://{{ s.domain }}/img/hero.jpg",
+  "image": "https://{{ s.domain }}/img/share.jpg",
+  "logo": "https://{{ s.domain }}/img/icon-512.png",
   {%- endif %}
   "telephone": {{ s.phone | tel | dump | safe }},
   "address": {

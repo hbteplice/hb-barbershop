@@ -43,7 +43,7 @@ Web pak běží na http://localhost:8080. Rezervační okno Reservia se lokáln�
 | A | @ | 185.199.109.153 |
 | A | @ | 185.199.110.153 |
 | A | @ | 185.199.111.153 |
-| CNAME | www | *uzivatel*.github.io. |
+| CNAME | www | hbteplice.github.io. |
 
 Původní A záznamy hlavní domény (od Forpsi hostingu) je potřeba smazat. MX záznamy pro e-mail nechte, jak jsou.
 

@@ -1,0 +1,285 @@
+---
+permalink: /index.html
+---
+{%- set s = site -%}
+{%- set igUrl = "https://instagram.com/" + s.instagram -%}
+{%- set mapUrl = "https://mapy.cz/zakladni?q=" + (s.street + ", " + s.zip + " " + s.city) | urlencode -%}
+<!doctype html>
+<html lang="cs">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ s.name }}</title>
+<meta name="description" content="{{ s.description }}">
+<meta name="theme-color" content="#121415">
+{%- if s.domain %}
+<link rel="canonical" href="https://{{ s.domain }}/">
+<meta property="og:url" content="https://{{ s.domain }}/">
+<meta property="og:image" content="https://{{ s.domain }}/img/hero.jpg">
+{%- endif %}
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{ s.name }}">
+<meta property="og:description" content="{{ s.description }}">
+<link rel="icon" type="image/png" href="/img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BarberShop",
+  "name": {{ s.name | dump | safe }},
+  {%- if s.domain %}
+  "url": "https://{{ s.domain }}/",
+  "image": "https://{{ s.domain }}/img/hero.jpg",
+  {%- endif %}
+  "telephone": {{ s.phone | tel | dump | safe }},
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": {{ s.street | dump | safe }},
+    "postalCode": {{ s.zip | dump | safe }},
+    "addressLocality": {{ s.city | dump | safe }},
+    "addressCountry": "CZ"
+  },
+  "openingHoursSpecification": [
+    {%- set en = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"] -%}
+    {%- set first = true -%}
+    {%- for h in s.hours -%}{%- if not h.closed -%}
+    {{ "," if not first }}{ "@type": "OpeningHoursSpecification", "dayOfWeek": "{{ en[loop.index0] }}", "opens": "{{ h.open | hhmm }}", "closes": "{{ h.close | hhmm }}" }
+    {%- set first = false -%}
+    {%- endif -%}{%- endfor %}
+  ],
+  "sameAs": ["{{ igUrl }}"]
+}
+</script>
+<style>
+:root{
+  --concrete:#1B1E20; --paper:#121415; --graphite:#ECEEEE; --steel:#9AA1A5;
+  --line:#33383B; --red:#D2261E; --red-ink:#fff; --panel:rgba(18,20,21,.74);
+  --font:"Archivo", "Helvetica Neue", Arial, sans-serif;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--graphite);font-family:var(--font);font-size:17px;line-height:1.5;-webkit-font-smoothing:antialiased}
+img{max-width:100%}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* ---------- top bar ---------- */
+.bar{position:absolute;top:env(safe-area-inset-top,0px);left:0;right:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:22px clamp(20px,4vw,56px)}
+.bar nav{display:flex;gap:26px;font-size:15px}
+.bar nav a{text-decoration:none;opacity:.8}
+.bar nav a:hover{opacity:1;text-decoration:underline;text-underline-offset:4px}
+
+/* ---------- hero ---------- */
+.hero{position:relative;min-height:100svh;overflow:hidden;display:grid;grid-template-columns:1.1fr minmax(360px,480px);gap:clamp(24px,4vw,64px);align-items:center;padding:110px clamp(20px,4vw,56px) 56px}
+.bg{position:absolute;inset:-12px;background:url("/img/hero.jpg") center 60%/cover;filter:blur(3px) saturate(.9) brightness(.8);transform:scale(1.02);z-index:0}
+.bg::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(18,20,21,.92) 0%,rgba(18,20,21,.6) 45%,rgba(18,20,21,.35) 100%)}
+.hero > *:not(.bg){position:relative;z-index:1;min-width:0}
+.logo{display:block;width:clamp(200px,22vw,300px);height:auto;margin:0 0 36px}
+.intro h1{font-size:clamp(22px,2.4vw,30px);font-weight:600;font-stretch:90%;margin:0 0 10px;letter-spacing:-.01em}
+.intro p{max-width:34ch;margin:0 0 26px;color:#C9CDCF}
+.meta{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:15px}
+.meta a{text-decoration:none;border-bottom:1px solid var(--line);padding-bottom:2px}
+.meta a:hover{border-color:var(--graphite)}
+
+/* ---------- booking panel ---------- */
+.book{background:var(--panel);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid var(--line);border-radius:20px;padding:26px 24px 24px}
+.book h2{margin:0 0 4px;font-size:24px;font-weight:700;font-stretch:90%}
+.book .sub{margin:0 0 20px;font-size:14px;color:var(--steel)}
+.services{display:grid;gap:6px;margin:0;padding:0;list-style:none}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:15px}
+.opt small{color:var(--steel);font-size:13px;margin-left:8px}
+.opt b{font-weight:600;white-space:nowrap}
+.addlabel{margin:16px 0 8px;font-size:13px;color:var(--steel)}
+.chips{display:flex;gap:6px;flex-wrap:wrap;margin:0;padding:0;list-style:none}
+.chip{padding:7px 12px;border-radius:99px;border:1px solid var(--line);font-size:13px}
+.cta{all:unset;cursor:pointer;display:block;width:100%;box-sizing:border-box;text-align:center;margin-top:20px;padding:15px;border-radius:12px;background:var(--red);color:var(--red-ink);font-weight:700;font-size:16px;transition:filter .15s}
+.cta:hover{filter:brightness(1.08)}
+.cta:focus-visible{outline:2px solid var(--graphite);outline-offset:3px}
+.note{font-size:13px;color:var(--steel);margin:10px 0 0;text-align:center}
+
+/* ---------- booking dialog ---------- */
+.modal{border:0;padding:0;width:min(560px,100vw - 32px);height:min(820px,100dvh - 48px);max-width:none;max-height:none;border-radius:20px;background:var(--paper);color:var(--graphite);overflow:hidden}
+.modal::backdrop{background:rgba(0,0,0,.7);backdrop-filter:blur(4px)}
+.modal[open]{display:flex;flex-direction:column}
+.modal header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px 12px 20px;border-bottom:1px solid var(--line);font-size:14px}
+.modal header a{color:var(--steel)}
+.modal .x{all:unset;cursor:pointer;width:36px;height:36px;display:grid;place-items:center;border-radius:50%;font-size:22px;line-height:1}
+.modal .x:hover{background:var(--concrete)}
+.modal iframe{flex:1;width:100%;border:0;background:#fff}
+
+/* ---------- info ---------- */
+.info{display:grid;grid-template-columns:1.3fr 1fr;gap:clamp(24px,4vw,64px);padding:clamp(56px,8vw,110px) clamp(20px,4vw,56px);background:var(--concrete)}
+.map{position:relative;border-radius:20px;overflow:hidden;min-height:340px;background:var(--paper);border:1px solid var(--line)}
+.map svg{position:absolute;inset:0;width:100%;height:100%}
+.pin{position:absolute;left:54%;top:46%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.pin span{background:#fff;color:#121415;font-weight:900;font-stretch:125%;padding:8px 12px;border-radius:10px;font-size:15px;letter-spacing:-.02em}
+.pin i{width:2px;height:18px;background:#fff}
+.pin i::after{content:"";display:block;width:10px;height:10px;border-radius:50%;background:var(--red);margin:16px 0 0 -4px}
+.maplink{position:absolute;right:14px;bottom:14px;background:var(--paper);border:1px solid var(--line);padding:9px 14px;border-radius:99px;font-size:14px;text-decoration:none}
+.maplink:hover{border-color:var(--graphite)}
+.where h2{font-size:clamp(36px,5vw,64px);line-height:.95;font-weight:800;font-stretch:80%;letter-spacing:-.02em;margin:0 0 24px}
+.where address{font-style:normal;font-size:19px;margin-bottom:28px}
+.where address a{text-decoration:none;color:var(--steel)}
+.hours{width:100%;border-collapse:collapse;font-size:15px;margin-bottom:32px}
+.hours td{padding:8px 0;border-bottom:1px solid var(--line)}
+.hours td:last-child{text-align:right;font-variant-numeric:tabular-nums}
+.hours tr.today td{font-weight:700}
+.ig{display:flex;align-items:center;gap:14px;text-decoration:none;padding:16px 18px;border:1px solid var(--graphite);border-radius:14px;transition:background .15s,color .15s}
+.ig:hover{background:var(--graphite);color:var(--paper)}
+.ig small{display:block;color:var(--steel);font-size:13px}
+.ig:hover small{color:inherit;opacity:.7}
+
+footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding:24px clamp(20px,4vw,56px);font-size:13px;color:var(--steel)}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr;padding-top:90px;align-items:start}
+  .bg::after{background:linear-gradient(180deg,rgba(18,20,21,.45) 0%,rgba(18,20,21,.75) 45%,var(--paper) 85%)}
+  .bar nav a:not(:last-child){display:none}
+  .info{grid-template-columns:1fr}
+  .logo{width:180px;margin-bottom:28px}
+  .book{padding:22px 16px}
+}
+@media (max-width:600px){
+  .modal{width:100vw;height:100dvh;border-radius:0}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <span></span>
+  <nav>
+    <a href="#rezervace">Rezervace</a>
+    <a href="#kde">Kde nás najdete</a>
+    <a href="{{ igUrl }}" target="_blank" rel="noopener">Instagram</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero">
+  <div class="bg" aria-hidden="true"></div>
+
+  <div class="intro">
+    <img class="logo" src="/img/logo.png" width="700" height="416" alt="{{ s.name }}">
+    <h1>{{ s.headline }}</h1>
+    <p>{{ s.intro }}</p>
+    <div class="meta">
+      <a href="#kde">{{ s.street }}, {{ s.city }}</a>
+      <a href="{{ igUrl }}" target="_blank" rel="noopener">@{{ s.instagram }}</a>
+      <a href="tel:{{ s.phone | tel }}">{{ s.phone }}</a>
+      <span id="openNow"></span>
+    </div>
+  </div>
+
+  <div class="book" id="rezervace">
+    <h2>Rezervace</h2>
+    <p class="sub">Vyberte si termín online, potvrzení vám přijde e-mailem.</p>
+
+    <ul class="services" aria-label="Služby a ceny">
+      {%- for svc in s.services %}
+      <li class="opt"><span>{{ svc.name }}{% if svc.note %}<small>{{ svc.note }}</small>{% endif %}</span><b>{{ svc.price | price }} Kč</b></li>
+      {%- endfor %}
+    </ul>
+
+    {%- if s.addons.length %}
+    <p class="addlabel">Ke službě můžete přidat</p>
+    <ul class="chips" aria-label="Doplňky">
+      {%- for a in s.addons %}
+      <li class="chip">{{ a.name }} +{{ a.price | price }}</li>
+      {%- endfor %}
+    </ul>
+    {%- endif %}
+
+    {%- if s.reservioUrl %}
+    <a class="cta" id="bookBtn" href="{{ s.reservioUrl }}" target="_blank" rel="noopener">Vybrat termín</a>
+    <p class="note">Rezervace přes Reservio, bez registrace.</p>
+    {%- else %}
+    <a class="cta" href="tel:{{ s.phone | tel }}">Objednat se telefonicky</a>
+    <p class="note">{{ s.phone }}</p>
+    {%- endif %}
+  </div>
+</section>
+
+<section class="info" id="kde">
+  <div class="map">
+    <svg viewBox="0 0 600 400" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <rect width="600" height="400" fill="var(--paper)"/>
+      <g fill="var(--concrete)">
+        <rect x="30" y="30" width="140" height="90" rx="6"/><rect x="200" y="30" width="110" height="120" rx="6"/>
+        <rect x="360" y="20" width="200" height="80" rx="6"/><rect x="30" y="160" width="120" height="130" rx="6"/>
+        <rect x="360" y="140" width="90" height="90" rx="6"/><rect x="480" y="130" width="100" height="140" rx="6"/>
+        <rect x="190" y="220" width="130" height="150" rx="6"/><rect x="30" y="320" width="130" height="70" rx="6"/>
+        <rect x="360" y="270" width="210" height="110" rx="6"/>
+      </g>
+      <g fill="none" stroke="var(--line)" stroke-width="14" stroke-linecap="round">
+        <path d="M-10 140 C 150 150, 250 185, 620 115"/><path d="M340 -10 L 335 420"/><path d="M175 -10 C 185 150, 170 250, 180 420"/>
+      </g>
+      <path d="M-10 305 C 120 300, 260 250, 620 250" fill="none" stroke="var(--steel)" stroke-width="3" stroke-dasharray="2 8" stroke-linecap="round" opacity=".6"/>
+    </svg>
+    <div class="pin"><span>HB</span><i></i></div>
+    <a class="maplink" href="{{ mapUrl }}" target="_blank" rel="noopener">Navigovat v Mapy.cz</a>
+  </div>
+
+  <div class="where">
+    <h2>Kde nás najdete</h2>
+    <address>{{ s.street }}<br>{{ s.zip }} {{ s.city }}<br><a href="tel:{{ s.phone | tel }}">{{ s.phone }}</a></address>
+    <table class="hours" id="hours">
+      {%- for h in s.hours %}
+      <tr><td>{{ h.day }}</td><td>{% if h.closed %}Zavřeno{% else %}{{ h.open }} – {{ h.close }}{% endif %}</td></tr>
+      {%- endfor %}
+    </table>
+    <a class="ig" href="{{ igUrl }}" target="_blank" rel="noopener">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"/></svg>
+      <span>@{{ s.instagram }}<small>Nové střihy a volné termíny</small></span>
+    </a>
+  </div>
+</section>
+</main>
+
+<footer>
+  <span>{{ s.name }}</span>
+  <span>{{ s.owner }}, IČO {{ s.ico }}</span>
+</footer>
+
+{%- if s.reservioUrl %}
+<dialog class="modal" id="bookModal" aria-label="Rezervace termínu">
+  <header>
+    <a href="{{ s.reservioUrl }}" target="_blank" rel="noopener">Otevřít v novém okně</a>
+    <button class="x" id="bookClose" aria-label="Zavřít">×</button>
+  </header>
+  <iframe title="Rezervace přes Reservio" data-src="{{ s.reservioUrl }}" allow="payment"></iframe>
+</dialog>
+{%- endif %}
+
+<script>
+(() => {
+  const hours = {{ s.hours | dump | safe }};
+  // hours are Mon..Sun, JS getDay() is Sun..Sat
+  const idx = (new Date().getDay() + 6) % 7;
+  const rows = document.querySelectorAll('#hours tr');
+  rows[idx] && rows[idx].classList.add('today');
+  const h = hours[idx], short = t => t.replace(/:00$/, '');
+  document.getElementById('openNow').textContent =
+    !h || h.closed ? 'Dnes zavřeno' : `Dnes otevřeno ${short(h.open)}–${short(h.close)}`;
+
+  // Booking opens Reservio in a dialog; the link still works without JS.
+  const btn = document.getElementById('bookBtn'), modal = document.getElementById('bookModal');
+  if (!btn || !modal || !modal.showModal) return;
+  const frame = modal.querySelector('iframe');
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    if (!frame.src) frame.src = frame.dataset.src;
+    modal.showModal();
+  });
+  document.getElementById('bookClose').onclick = () => modal.close();
+  modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
+})();
+</script>
+</body>
+</html>

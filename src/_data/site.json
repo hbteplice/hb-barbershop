@@ -1,0 +1,37 @@
+{
+  "name": "HB Barbershop Teplice",
+  "domain": "",
+  "headline": "Střihy a vousy v Teplicích",
+  "intro": "Termín si zarezervujete online za minutu, bez registrace.",
+  "description": "HB Barbershop Teplice – pánské střihy, úprava vousů a holení. Online rezervace termínu za minutu.",
+  "reservioUrl": "",
+  "phone": "+420 774 324 533",
+  "instagram": "hb.teplice",
+  "street": "U Nových lázní 3270",
+  "zip": "415 01",
+  "city": "Teplice",
+  "owner": "Hamza Bouraoui",
+  "ico": "23425342",
+  "services": [
+    { "name": "Pánský střih", "note": "", "minutes": 45, "price": 450 },
+    { "name": "Dětský střih", "note": "do 15 let", "minutes": 30, "price": 300 },
+    { "name": "Úprava vousů", "note": "", "minutes": 30, "price": 250 },
+    { "name": "Komplet vlasy + vousy", "note": "", "minutes": 60, "price": 600 },
+    { "name": "Komplet De Luxe", "note": "střih, mytí, holení, barva, depilace, maska, masáž", "minutes": 90, "price": 1100 }
+  ],
+  "addons": [
+    { "name": "Mytí vlasů", "price": 100 },
+    { "name": "Barva vousů", "price": 150 },
+    { "name": "Depilace voskem", "price": 100 },
+    { "name": "Maska + masáž", "price": 200 }
+  ],
+  "hours": [
+    { "day": "Pondělí", "open": "9:00", "close": "19:00", "closed": false },
+    { "day": "Úterý", "open": "9:00", "close": "19:00", "closed": false },
+    { "day": "Středa", "open": "9:00", "close": "19:00", "closed": false },
+    { "day": "Čtvrtek", "open": "9:00", "close": "19:00", "closed": false },
+    { "day": "Pátek", "open": "9:00", "close": "19:00", "closed": false },
+    { "day": "Sobota", "open": "10:00", "close": "16:00", "closed": false },
+    { "day": "Neděle", "open": "", "close": "", "closed": true }
+  ]
+}

@@ -1,0 +1,50 @@
+# Editor obsahu pro https://app.pagescms.org – správce tu upravuje texty, ceny a otevírací dobu bez psaní kódu.
+media:
+  input: src/img
+  output: /img
+
+content:
+  - name: site
+    label: Obsah webu
+    type: file
+    path: src/_data/site.json
+    format: json
+    fields:
+      - { name: name, label: Název barbershopu, type: string, required: true }
+      - { name: headline, label: Nadpis, type: string }
+      - { name: intro, label: Úvodní věta, type: text }
+      - { name: description, label: Popis pro Google, type: text, description: "Krátký text, který se zobrazí ve výsledcích vyhledávání." }
+      - { name: reservioUrl, label: Odkaz na Reservio, type: string, description: "Veřejná rezervační stránka, např. https://nazev.reservio.com/. Když je prázdné, tlačítko nabídne telefon." }
+      - { name: phone, label: Telefon, type: string }
+      - { name: instagram, label: Instagram (bez @), type: string }
+      - { name: street, label: Ulice a číslo, type: string }
+      - { name: zip, label: PSČ, type: string }
+      - { name: city, label: Město, type: string }
+      - name: services
+        label: Služby
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Název, type: string, required: true }
+          - { name: note, label: Poznámka, type: string, description: "Malým písmem za názvem, nepovinné." }
+          - { name: minutes, label: Délka (min), type: number }
+          - { name: price, label: Cena (Kč), type: number, required: true }
+      - name: addons
+        label: Doplňky ke službě
+        type: object
+        list: true
+        fields:
+          - { name: name, label: Název, type: string, required: true }
+          - { name: price, label: Příplatek (Kč), type: number, required: true }
+      - name: hours
+        label: Otevírací doba (Po–Ne)
+        type: object
+        list: { min: 7, max: 7 }
+        fields:
+          - { name: day, label: Den, type: string, readonly: true }
+          - { name: open, label: Otevírá, type: string, description: "např. 9:00" }
+          - { name: close, label: Zavírá, type: string, description: "např. 19:00" }
+          - { name: closed, label: Zavřeno, type: boolean }
+      - { name: owner, label: Provozovatel, type: string }
+      - { name: ico, label: IČO, type: string }
+      - { name: domain, label: Doména, type: string, description: "Bez https://, např. hbbarbershop.cz. Tohle neměňte, pokud neměníte doménu." }

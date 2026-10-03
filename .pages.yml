@@ -29,6 +29,7 @@ content:
           - { name: note, label: Poznámka, type: string, description: "Malým písmem za názvem, nepovinné." }
           - { name: minutes, label: Délka (min), type: number }
           - { name: price, label: Cena (Kč), type: number, required: true }
+          - { name: link, label: Odkaz na službu v Reserviu, type: string, description: "V Reserviu otevřete službu a zkopírujte adresu (…reservio.com/services/…). Když je prázdné, otevře se seznam všech služeb." }
       - name: addons
         label: Doplňky ke službě
         type: object

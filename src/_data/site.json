@@ -13,25 +13,102 @@
   "owner": "Hamza Bouraoui",
   "ico": "23425342",
   "services": [
-    { "name": "Pánský střih", "note": "", "minutes": 45, "price": 450 },
-    { "name": "Dětský střih", "note": "do 15 let", "minutes": 30, "price": 300 },
-    { "name": "Úprava vousů", "note": "", "minutes": 30, "price": 250 },
-    { "name": "Komplet vlasy + vousy", "note": "", "minutes": 60, "price": 600 },
-    { "name": "Komplet De Luxe", "note": "střih, mytí, holení, barva, depilace, maska, masáž", "minutes": 90, "price": 1100 }
+    {
+      "name": "Pánský střih",
+      "note": "",
+      "minutes": 45,
+      "price": 450,
+      "link": "https://hb-teplice.reservio.com/services/f4ed80ea-541c-4bde-a9bc-ce9bce99f9be"
+    },
+    {
+      "name": "Dětský střih",
+      "note": "do 15 let",
+      "minutes": 30,
+      "price": 300,
+      "link": "https://hb-teplice.reservio.com/services/88eef207-123f-44e6-adf9-29ad6a89ceb7"
+    },
+    {
+      "name": "Úprava vousů",
+      "note": "",
+      "minutes": 30,
+      "price": 250,
+      "link": "https://hb-teplice.reservio.com/services/66c5c77b-3e95-47f4-854f-c438e37f89e9"
+    },
+    {
+      "name": "Komplet vlasy + vousy",
+      "note": "",
+      "minutes": 60,
+      "price": 600,
+      "link": "https://hb-teplice.reservio.com/services/f884d30c-6c6a-46f3-9acf-f230f55f66c8"
+    },
+    {
+      "name": "Komplet De Luxe",
+      "note": "střih, mytí, holení, barva, depilace, maska, masáž",
+      "minutes": 90,
+      "price": 1100,
+      "link": "https://hb-teplice.reservio.com/services/e2b11459-f903-45bf-80c0-9ab987f366b2"
+    }
   ],
   "addons": [
-    { "name": "Mytí vlasů", "price": 100 },
-    { "name": "Barva vousů", "price": 150 },
-    { "name": "Depilace voskem", "price": 100 },
-    { "name": "Maska + masáž", "price": 200 }
+    {
+      "name": "Mytí vlasů",
+      "price": 100
+    },
+    {
+      "name": "Barva vousů",
+      "price": 150
+    },
+    {
+      "name": "Depilace voskem",
+      "price": 100
+    },
+    {
+      "name": "Maska + masáž",
+      "price": 200
+    }
   ],
   "hours": [
-    { "day": "Pondělí", "open": "9:00", "close": "19:00", "closed": false },
-    { "day": "Úterý", "open": "9:00", "close": "19:00", "closed": false },
-    { "day": "Středa", "open": "9:00", "close": "19:00", "closed": false },
-    { "day": "Čtvrtek", "open": "9:00", "close": "19:00", "closed": false },
-    { "day": "Pátek", "open": "9:00", "close": "19:00", "closed": false },
-    { "day": "Sobota", "open": "10:00", "close": "16:00", "closed": false },
-    { "day": "Neděle", "open": "", "close": "", "closed": true }
+    {
+      "day": "Pondělí",
+      "open": "9:00",
+      "close": "19:00",
+      "closed": false
+    },
+    {
+      "day": "Úterý",
+      "open": "9:00",
+      "close": "19:00",
+      "closed": false
+    },
+    {
+      "day": "Středa",
+      "open": "9:00",
+      "close": "19:00",
+      "closed": false
+    },
+    {
+      "day": "Čtvrtek",
+      "open": "9:00",
+      "close": "19:00",
+      "closed": false
+    },
+    {
+      "day": "Pátek",
+      "open": "9:00",
+      "close": "19:00",
+      "closed": false
+    },
+    {
+      "day": "Sobota",
+      "open": "10:00",
+      "close": "16:00",
+      "closed": false
+    },
+    {
+      "day": "Neděle",
+      "open": "",
+      "close": "",
+      "closed": true
+    }
   ]
 }

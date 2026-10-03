@@ -100,6 +100,9 @@ a{color:inherit}
 .opt{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 14px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.03);font-size:15px}
 .opt small{color:var(--steel);font-size:13px;margin-left:8px}
 .opt b{font-weight:600;white-space:nowrap}
+a.opt{text-decoration:none;cursor:pointer;transition:border-color .15s,background .15s}
+a.opt:hover{border-color:var(--graphite);background:rgba(255,255,255,.07)}
+a.opt b::after{content:"›";margin-left:10px;color:var(--steel);font-weight:400}
 .addlabel{margin:16px 0 8px;font-size:13px;color:var(--steel)}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin:0;padding:0;list-style:none}
 .chip{padding:7px 12px;border-radius:99px;border:1px solid var(--line);font-size:13px}
@@ -185,11 +188,16 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
 
   <div class="book" id="rezervace">
     <h2>Rezervace</h2>
-    <p class="sub">Vyberte si termín online, potvrzení vám přijde e-mailem.</p>
+    <p class="sub">{% if s.reservioUrl %}Klikněte na službu a vyberte si termín. Potvrzení vám přijde e-mailem.{% else %}Vyberte si termín online, potvrzení vám přijde e-mailem.{% endif %}</p>
 
     <ul class="services" aria-label="Služby a ceny">
       {%- for svc in s.services %}
-      <li class="opt"><span>{{ svc.name }}{% if svc.note %}<small>{{ svc.note }}</small>{% endif %}</span><b>{{ svc.price | price }} Kč</b></li>
+      {%- set label %}<span>{{ svc.name }}{% if svc.note %}<small>{{ svc.note }}</small>{% endif %}</span><b>{{ svc.price | price }} Kč</b>{% endset %}
+      {%- if s.reservioUrl %}
+      <li><a class="opt" data-book href="{{ svc.link or s.reservioUrl }}" target="_blank" rel="noopener">{{ label | safe }}</a></li>
+      {%- else %}
+      <li class="opt">{{ label | safe }}</li>
+      {%- endif %}
       {%- endfor %}
     </ul>
 
@@ -203,7 +211,7 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
     {%- endif %}
 
     {%- if s.reservioUrl %}
-    <a class="cta" id="bookBtn" href="{{ s.reservioUrl }}" target="_blank" rel="noopener">Vybrat termín</a>
+    <a class="cta" data-book href="{{ s.reservioUrl }}" target="_blank" rel="noopener">Vybrat termín</a>
     <p class="note">Rezervace přes Reservio, bez registrace.</p>
     {%- else %}
     <a class="cta" href="tel:{{ s.phone | tel }}">Objednat se telefonicky</a>
@@ -256,10 +264,10 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
 {%- if s.reservioUrl %}
 <dialog class="modal" id="bookModal" aria-label="Rezervace termínu">
   <header>
-    <a href="{{ s.reservioUrl }}" target="_blank" rel="noopener">Otevřít v novém okně</a>
+    <a id="bookExt" href="{{ s.reservioUrl }}" target="_blank" rel="noopener">Otevřít v novém okně</a>
     <button class="x" id="bookClose" aria-label="Zavřít">×</button>
   </header>
-  <iframe title="Rezervace přes Reservio" data-src="{{ s.reservioUrl }}" allow="payment"></iframe>
+  <iframe title="Rezervace přes Reservio" allow="payment"></iframe>
 </dialog>
 {%- endif %}
 
@@ -274,15 +282,16 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
   document.getElementById('openNow').textContent =
     !h || h.closed ? 'Dnes zavřeno' : `Dnes otevřeno ${short(h.open)}–${short(h.close)}`;
 
-  // Booking opens Reservio in a dialog; the link still works without JS.
-  const btn = document.getElementById('bookBtn'), modal = document.getElementById('bookModal');
-  if (!btn || !modal || !modal.showModal) return;
-  const frame = modal.querySelector('iframe');
-  btn.addEventListener('click', e => {
+  // Booking links open Reservio in a dialog; they still work as plain links without JS.
+  const modal = document.getElementById('bookModal');
+  if (!modal || !modal.showModal) return;
+  const frame = modal.querySelector('iframe'), ext = document.getElementById('bookExt');
+  document.querySelectorAll('[data-book]').forEach(link => link.addEventListener('click', e => {
     e.preventDefault();
-    if (!frame.src) frame.src = frame.dataset.src;
+    if (frame.src !== link.href) frame.src = link.href;
+    ext.href = link.href;
     modal.showModal();
-  });
+  }));
   document.getElementById('bookClose').onclick = () => modal.close();
   modal.addEventListener('click', e => { if (e.target === modal) modal.close(); });
 })();

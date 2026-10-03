@@ -31,12 +31,14 @@ content:
           - { name: price, label: Cena (Kč), type: number, required: true }
           - { name: link, label: Odkaz na službu v Reserviu, type: string, description: "V Reserviu otevřete službu a zkopírujte adresu (…reservio.com/services/…). Když je prázdné, otevře se seznam všech služeb." }
       - name: addons
-        label: Doplňky ke službě
+        label: Další služby (doplňky)
         type: object
         list: true
         fields:
           - { name: name, label: Název, type: string, required: true }
-          - { name: price, label: Příplatek (Kč), type: number, required: true }
+          - { name: price, label: Cena (Kč), type: number, required: true }
+          - { name: link, label: Odkaz na službu v Reserviu, type: string, description: "V Reserviu otevřete službu a zkopírujte adresu (…reservio.com/services/…)." }
+      - { name: addonsNote, label: Text pod dalšími službami, type: text, description: "Vysvětlení, jak přidat doplněk ke střihu. Když je prázdné, nezobrazí se." }
       - name: hours
         label: Otevírací doba (Po–Ne)
         type: object

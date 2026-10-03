@@ -52,21 +52,26 @@
   "addons": [
     {
       "name": "Mytí vlasů",
-      "price": 100
+      "price": 100,
+      "link": "https://hb-teplice.reservio.com/services/76a88131-22d4-4d8b-b226-f2a39ad12a91"
     },
     {
       "name": "Barva vousů",
-      "price": 150
+      "price": 150,
+      "link": "https://hb-teplice.reservio.com/services/239ed7d1-606c-496c-8c1d-7fa06c14b340"
     },
     {
       "name": "Depilace voskem",
-      "price": 100
+      "price": 100,
+      "link": "https://hb-teplice.reservio.com/services/e78cf676-1d8e-49a3-ac3c-c1abbc19cd29"
     },
     {
       "name": "Maska + masáž",
-      "price": 200
+      "price": 200,
+      "link": "https://hb-teplice.reservio.com/services/5e5602f0-2cb0-40dd-9a65-c54c66512925"
     }
   ],
+  "addonsNote": "Chcete něco z toho ke střihu? Napište to do poznámky v rezervaci a doplatíte na místě.",
   "hours": [
     {
       "day": "Pondělí",

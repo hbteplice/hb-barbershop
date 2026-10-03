@@ -106,6 +106,9 @@ a.opt b::after{content:"›";margin-left:10px;color:var(--steel);font-weight:400
 .addlabel{margin:16px 0 8px;font-size:13px;color:var(--steel)}
 .chips{display:flex;gap:6px;flex-wrap:wrap;margin:0;padding:0;list-style:none}
 .chip{padding:7px 12px;border-radius:99px;border:1px solid var(--line);font-size:13px}
+a.chip{display:inline-block;text-decoration:none;cursor:pointer;transition:border-color .15s,background .15s}
+a.chip:hover{border-color:var(--graphite);background:rgba(255,255,255,.07)}
+.addnote{margin:10px 0 0;font-size:13px;color:var(--steel)}
 .cta{all:unset;cursor:pointer;display:block;width:100%;box-sizing:border-box;text-align:center;margin-top:20px;padding:15px;border-radius:12px;background:var(--red);color:var(--red-ink);font-weight:700;font-size:16px;transition:filter .15s}
 .cta:hover{filter:brightness(1.08)}
 .cta:focus-visible{outline:2px solid var(--graphite);outline-offset:3px}
@@ -202,12 +205,19 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
     </ul>
 
     {%- if s.addons.length %}
-    <p class="addlabel">Ke službě můžete přidat</p>
-    <ul class="chips" aria-label="Doplňky">
+    <p class="addlabel">Další služby</p>
+    <ul class="chips" aria-label="Další služby">
       {%- for a in s.addons %}
-      <li class="chip">{{ a.name }} +{{ a.price | price }}</li>
+      {%- if s.reservioUrl %}
+      <li><a class="chip" data-book href="{{ a.link or s.reservioUrl }}" target="_blank" rel="noopener">{{ a.name }} {{ a.price | price }} Kč</a></li>
+      {%- else %}
+      <li class="chip">{{ a.name }} {{ a.price | price }} Kč</li>
+      {%- endif %}
       {%- endfor %}
     </ul>
+    {%- if s.addonsNote %}
+    <p class="addnote">{{ s.addonsNote }}</p>
+    {%- endif %}
     {%- endif %}
 
     {%- if s.reservioUrl %}

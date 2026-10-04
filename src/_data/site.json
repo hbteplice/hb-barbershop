@@ -1,7 +1,6 @@
 {
   "name": "HB Barbershop Teplice",
-  "domain": "barber-teplice.cz",
-  "headline": "Střihy a vousy v Teplicích",
+  "headline": "Pánský barbershop v Teplicích",
   "intro": "Termín si zarezervujete online za minutu, bez registrace.",
   "description": "HB Barbershop Teplice – pánské střihy, úprava vousů a holení. Online rezervace termínu za minutu.",
   "reservioUrl": "https://hb-teplice.reservio.com/",
@@ -10,68 +9,53 @@
   "street": "U Nových lázní 3270",
   "zip": "415 01",
   "city": "Teplice",
-  "owner": "Hamza Bouraoui",
-  "ico": "23425342",
   "services": [
     {
       "name": "Pánský střih",
-      "note": "",
       "minutes": 45,
-      "price": 450,
-      "link": "https://hb-teplice.reservio.com/services/f4ed80ea-541c-4bde-a9bc-ce9bce99f9be"
+      "price": 450
     },
     {
       "name": "Dětský střih",
       "note": "do 15 let",
       "minutes": 30,
-      "price": 300,
-      "link": "https://hb-teplice.reservio.com/services/88eef207-123f-44e6-adf9-29ad6a89ceb7"
+      "price": 300
     },
     {
       "name": "Úprava vousů",
-      "note": "",
       "minutes": 30,
-      "price": 250,
-      "link": "https://hb-teplice.reservio.com/services/66c5c77b-3e95-47f4-854f-c438e37f89e9"
+      "price": 250
     },
     {
       "name": "Komplet vlasy + vousy",
-      "note": "",
       "minutes": 60,
-      "price": 600,
-      "link": "https://hb-teplice.reservio.com/services/f884d30c-6c6a-46f3-9acf-f230f55f66c8"
+      "price": 600
     },
     {
       "name": "Komplet De Luxe",
       "note": "střih, mytí, holení, barva, depilace, maska, masáž",
       "minutes": 90,
-      "price": 1100,
-      "link": "https://hb-teplice.reservio.com/services/e2b11459-f903-45bf-80c0-9ab987f366b2"
+      "price": 1100
     }
   ],
   "addons": [
     {
       "name": "Mytí vlasů",
-      "price": 100,
-      "link": "https://hb-teplice.reservio.com/services/76a88131-22d4-4d8b-b226-f2a39ad12a91"
+      "price": 100
     },
     {
       "name": "Barva vousů",
-      "price": 150,
-      "link": "https://hb-teplice.reservio.com/services/239ed7d1-606c-496c-8c1d-7fa06c14b340"
+      "price": 150
     },
     {
       "name": "Depilace voskem",
-      "price": 100,
-      "link": "https://hb-teplice.reservio.com/services/e78cf676-1d8e-49a3-ac3c-c1abbc19cd29"
+      "price": 100
     },
     {
       "name": "Maska + masáž",
-      "price": 200,
-      "link": "https://hb-teplice.reservio.com/services/5e5602f0-2cb0-40dd-9a65-c54c66512925"
+      "price": 200
     }
   ],
-  "addonsNote": "Chcete něco z toho ke střihu? Napište to do poznámky v rezervaci.",
   "hours": [
     {
       "day": "Pondělí",
@@ -111,10 +95,10 @@
     },
     {
       "day": "Neděle",
-      "open": "",
-      "close": "",
       "closed": true
     }
   ],
-  "bookingNote": "Rezervace přes Reservio, bez registrace. Platíte až na místě."
+  "owner": "Hamza Bouraoui",
+  "ico": "23425342",
+  "domain": "barber-teplice.cz"
 }

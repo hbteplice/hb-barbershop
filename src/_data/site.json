@@ -71,7 +71,7 @@
       "link": "https://hb-teplice.reservio.com/services/5e5602f0-2cb0-40dd-9a65-c54c66512925"
     }
   ],
-  "addonsNote": "Chcete něco z toho ke střihu? Napište to do poznámky v rezervaci a doplatíte na místě.",
+  "addonsNote": "Chcete něco z toho ke střihu? Napište to do poznámky v rezervaci.",
   "hours": [
     {
       "day": "Pondělí",
@@ -115,5 +115,6 @@
       "close": "",
       "closed": true
     }
-  ]
+  ],
+  "bookingNote": "Rezervace přes Reservio, bez registrace. Platíte až na místě."
 }

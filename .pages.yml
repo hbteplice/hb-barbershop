@@ -15,6 +15,7 @@ content:
       - { name: intro, label: Úvodní věta, type: text }
       - { name: description, label: Popis pro Google, type: text, description: "Krátký text, který se zobrazí ve výsledcích vyhledávání." }
       - { name: reservioUrl, label: Odkaz na Reservio, type: string, description: "Veřejná rezervační stránka, např. https://nazev.reservio.com/. Když je prázdné, tlačítko nabídne telefon." }
+      - { name: bookingNote, label: Text pod tlačítkem rezervace, type: string }
       - { name: phone, label: Telefon, type: string }
       - { name: instagram, label: Instagram (bez @), type: string }
       - { name: street, label: Ulice a číslo, type: string }

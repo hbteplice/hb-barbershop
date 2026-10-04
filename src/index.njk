@@ -222,7 +222,7 @@ footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;paddin
 
     {%- if s.reservioUrl %}
     <a class="cta" data-book href="{{ s.reservioUrl }}" target="_blank" rel="noopener">Vybrat termín</a>
-    <p class="note">Rezervace přes Reservio, bez registrace.</p>
+    <p class="note">{{ s.bookingNote }}</p>
     {%- else %}
     <a class="cta" href="tel:{{ s.phone | tel }}">Objednat se telefonicky</a>
     <p class="note">{{ s.phone }}</p>

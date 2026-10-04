@@ -18,6 +18,7 @@ content:
       - { name: bookingNote, label: Text pod tlačítkem rezervace, type: string }
       - { name: phone, label: Telefon, type: string }
       - { name: instagram, label: Instagram (bez @), type: string }
+      - { name: languages, label: Jazyky, type: string, description: "Zobrazí se u kontaktu, např. English · Français · العربية. Když je prázdné, řádek zmizí." }
       - { name: street, label: Ulice a číslo, type: string }
       - { name: zip, label: PSČ, type: string }
       - { name: city, label: Město, type: string }

@@ -41,6 +41,15 @@ content:
           - { name: price, label: Cena (Kč), type: number, required: true }
           - { name: link, label: Odkaz na službu v Reserviu, type: string, description: "V Reserviu otevřete službu a zkopírujte adresu (…reservio.com/services/…)." }
       - { name: addonsNote, label: Text pod dalšími službami, type: text, description: "Vysvětlení, jak přidat doplněk ke střihu. Když je prázdné, nezobrazí se." }
+      - name: vacations
+        label: Dovolená / zavřeno
+        description: "Na webu se ukáže 3 týdny předem a po posledním dni sama zmizí. Staré záznamy můžete smazat."
+        type: object
+        list: true
+        fields:
+          - { name: from, label: Od, type: date, required: true }
+          - { name: to, label: Do (včetně), type: date, required: true }
+          - { name: note, label: Poznámka, type: string, description: "Nepovinné, např. Rezervace na další termíny běží dál." }
       - name: hours
         label: Otevírací doba (Po–Ne)
         type: object

@@ -68,7 +68,13 @@
     }
   ],
   "addonsNote": "Chcete něco z toho ke střihu? Napište to do poznámky v rezervaci.",
-  "vacations": [],
+  "vacations": [
+    {
+      "from": "2026-10-19",
+      "to": "2026-11-08",
+      "note": "Rezervace na termíny po dovolené běží dál."
+    }
+  ],
   "hours": [
     {
       "day": "Pondělí",
